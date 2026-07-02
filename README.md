@@ -5,7 +5,7 @@
 Clone this repository:
 
 ```bash
-git clone https://github.com/ae5259/xifetch-rs
+git clone https://github.com/aelloc/xifetch-rs
 ```
 
 Enter to a folder:
