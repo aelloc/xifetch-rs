@@ -13,20 +13,20 @@ fn main() {
 fn execute_command(command: &str, arg: Option<&str>) -> String {
     let mut command = &mut Command::new(command);
 
-    if arg.is_some() {
-        command = command.arg(arg.unwrap());
+    if let Some(arg) = arg {
+        command = command.arg(arg);
     }
 
     match command.output() {
         Ok(result) => {
             if result.status.success() {
-                return String::from_utf8_lossy(&result.stdout).trim().to_string();
+                String::from_utf8_lossy(&result.stdout).trim().to_string()
             } else {
-                return format!(
+                format!(
                     "Command failed (status: {:?}): {}",
                     result.status,
                     String::from_utf8_lossy(&result.stderr)
-                );
+                )
             }
         }
 
@@ -60,7 +60,7 @@ fn get_uptime() -> String {
     let extracted_time = &time_str[..comma_index];
     let trimmed_time = extracted_time.trim();
 
-    return trimmed_time.to_string();
+    trimmed_time.to_string()
 }
 
 fn get_cpu_info() -> Option<String> {
